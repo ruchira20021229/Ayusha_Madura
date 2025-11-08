@@ -60,9 +60,19 @@ if(isset($_POST['send'])){
       <h3>say something!</h3>
       <input type="text" name="name" required placeholder="enter your name" class="box">
       <input type="email" name="email" required placeholder="enter your email" class="box">
-      <input type="number" name="number" required pattern="[0-9]{10}" maxlength="10" placeholder="enter your phone number" class="box">
-      <textarea name="message" class="box" placeholder="enter your feedback or review" id="" cols="30" rows="10"></textarea>
-      <input type="submit" value="send message" name="send" class="btn">
+      <input
+         type="tel"
+         name="number"
+         required
+         pattern="[0-9]{10}"
+         maxlength="10"
+         placeholder="enter your phone number"
+         class="box"
+         inputmode="numeric"
+         oninput="this.value = this.value.replace(/\D/g, '').slice(0,10);"
+      >
+      <textarea name="message" class="box" placeholder="enter your feedback or review" cols="30" rows="10"></textarea>
+      <input type="submit" value="submit" name="send" class="btn">
    </form>
 
 </section>

@@ -14,7 +14,7 @@ if(isset($message)){
 <header class="header">
 
    <div class="flex">
-
+      <img src="images/logohead4.png" alt="Your Brand Logo" height =60 , width = 60 >
       <a href="admin_page.php" class="logo">Admin<span>Panel</span></a>
 
       <nav class="navbar">

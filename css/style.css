@@ -117,7 +117,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: rgba(227, 150, 17, 0.734);
 }
 
 .option-btn{
@@ -470,7 +470,7 @@ section{
    padding:1rem 0;
    line-height: 1.5;
 }
-
+/* 
 .products .box-container{
    max-width: 1200px;
    margin:0 auto;
@@ -517,9 +517,138 @@ section{
    padding:1rem;
    font-size: 2.5rem;
    color:var(--white);
-   background-color:  lab(38.4% 62.2 -56.59 / 0.471);;
+   background-color:  lab(45.51% 56.39 34.26);;
+} */
+
+
+.products .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+   gap: 1.5rem;
+   align-items: start;
+    border-color: black;
 }
 
+.products .box{
+
+  background: #eddddd;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 420px;
+  box-sizing: border-box;
+  position: relative; /* for badges */
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.products .box:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* image wrapper with stable aspect ratio so different images don't change card size */
+.products .box .image{
+  width: 100%;
+  aspect-ratio: 16 / 11; /* keeps consistent visual area */
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+  background: #f6f6f6;
+  height: 300px;
+}
+
+.products .box .image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform .35s ease;
+}
+
+.products .box:hover .image img{
+  transform: scale(1.04);
+}
+
+/* Price badge */
+.products .box .price{
+  margin-bottom: 0.75rem;
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #fff;
+  background: #ff003b;
+  padding: .4rem .8rem;
+  border-radius: .6rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.6rem;
+}
+
+/* Stock / small badges */
+.products .box .stock-badge{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0,0,0,0.06);
+  padding: .35rem .6rem;
+  border-radius: .6rem;
+  font-size: 1.4rem;
+  color: var(--black);
+}
+
+/* Name: single-line with ellipsis */
+.products .box .name{
+  text-align: center;
+  margin-bottom: 0.6rem;
+  flex: 0 0 auto;
+  font-size: 1.8rem;
+  color: var(--black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* layout for controls */
+.products .box .controls{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-top: auto;
+}
+
+/* quantity and button styling */
+.products .box .qty{
+  width: 80px;
+  text-align: center;
+  padding: .6rem;
+  border-radius: .6rem;
+  border: 1px solid #e6e6e6;
+  font-size: 1.6rem;
+}
+
+.products .box .btn{
+  padding: .8rem 1.2rem;
+  font-size: 1.6rem;
+  border-radius: .6rem;
+  background: #34c4aa;
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+/* responsive tweaks */
+@media (max-width: 480px){
+  .products .box { min-height: 380px; padding: 0.8rem; }
+  .products .box .image{ aspect-ratio: 4 / 3; }
+  .products .box .qty{ width: 60px; }
+  .products .box .price{ font-size: 1.4rem; top: .8rem; left: .8rem; }
+}
 .about .flex{
    max-width: 1200px;
    margin:0 auto;

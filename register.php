@@ -10,17 +10,22 @@ if(isset($_POST['submit'])){
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
    ##$user_type = $_POST['user_type'];
 
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
-
-   if(mysqli_num_rows($select_users) > 0){
-      $message[] = 'user already exist!';
+   // Server-side Gmail validation
+   if(!preg_match('/@gmail\.com$/i', $email)){
+      $message[] = 'Please use a Gmail address (@gmail.com)!';
    }else{
-      if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+      $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+
+      if(mysqli_num_rows($select_users) > 0){
+         $message[] = 'user already exist!';
       }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', 'user')") or die('query failed');
-         $message[] = 'registered successfully!';
-         header('location:login.php');
+         if($pass != $cpass){
+            $message[] = 'confirm password not matched!';
+         }else{
+            mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', 'user')") or die('query failed');
+            $message[] = 'registered successfully!';
+            header('location:login.php');
+         }
       }
    }
 
@@ -62,10 +67,10 @@ if(isset($message)){
    
 <div class="form-container">
 
-   <form action="" method="post">
+   <form action="" method="post" onsubmit="return validateEmail()">
       <h3>register now</h3>
       <input type="text" name="name" placeholder="enter your name" required class="box">
-      <input type="email" name="email" placeholder="enter your email" required class="box">
+      <input type="email" id="email" name="email" placeholder="enter your email" required class="box">
       <input type="password" name="password" placeholder="enter your password" required class="box" maxlength="8">
       <input type="password" name="cpassword" placeholder="confirm your password" required class="box" maxlength="8">
       <!--<select name="user_type" class="box">
@@ -77,6 +82,20 @@ if(isset($message)){
    </form>
 
 </div>
+
+<script>
+function validateEmail() {
+   var email = document.getElementById('email').value;
+   
+   // Check if email ends with @gmail.com
+   if (!email.toLowerCase().endsWith('@gmail.com')) {
+      alert('Please enter a valid Gmail address (@gmail.com)');
+      return false;
+   }
+   
+   return true;
+}
+</script>
 
 </body>
 </html>
