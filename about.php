@@ -47,7 +47,7 @@ if(!isset($user_id)){
       <div class="content">
          <h3>About Us</h3>
          <p>Begin your transformative and restorative journey at Aayusha Madura Ayurveda. We are dedicated to providing you with a completely personalised and immersive healing experience that is best suited to your individual needs.</p>
-         <p>By combining the ancient science of Ayurveda with traditional Sri Lankan medicine of Hela Wedakama, we offer a effective treatment programme that will rebalance and rejuvenate mind and body.</p>
+         <p>By combining the ancient science of Ayurveda with traditional Sri Lankan medicine of Hela Wedakama, we offer a effective treatment programme that will rebalance and rejuvenate mind and body .</p>
          <a href="contact.php" class="btn">contact us</a>
       </div>
 
