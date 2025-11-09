@@ -1,4 +1,24 @@
 <?php
+
+include 'config.php';
+
+$user_id = 0;
+$user_name = '';
+$user_email = '';
+
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+    // Fetch current user data from database
+    $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_id'") or die('query failed');
+    if(mysqli_num_rows($select_user) > 0){
+        $row = mysqli_fetch_assoc($select_user);
+        $user_name = $row['name'];
+        $user_email = $row['email'];
+        $_SESSION['user_name'] = $user_name; // Update session with current values
+        $_SESSION['user_email'] = $user_email;
+    }
+}
+
 if(isset($message)){
    foreach($message as $message){
       echo '
@@ -50,8 +70,9 @@ if(isset($message)){
          </div>
 
          <div class="user-box">
-            <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+            <p>username : <span><?php echo $user_name; ?></span></p>
+            <p>email : <span><?php echo $user_email; ?></span></p>
+            <a href="change_username.php" class="btn">Change Username</a>
             <a href="logout.php" class="delete-btn">logout</a>
          </div>
       </div>

@@ -39,7 +39,7 @@ if(isset($_GET['delete'])){
 
 <section class="messages">
 
-   <h1 class="title">messages</h1>
+   <h1 class="title">Feedbacks</h1>
 
    <div class="box-container">
    <?php
@@ -52,7 +52,7 @@ if(isset($_GET['delete'])){
          <div class="message-icon">
             <i class="fas fa-envelope"></i>
          </div>
-         <div class="message-id">Message #<?php echo $fetch_message['id']; ?></div>
+         <div class="message-id">Feedback #<?php echo $fetch_message['id']; ?></div>
       </div>
       
       <div class="message-content">
@@ -75,7 +75,7 @@ if(isset($_GET['delete'])){
          <div class="info-row">
             <div class="info-label">
                <i class="fas fa-phone"></i>
-               Number
+                Tell Number
             </div>
             <div class="info-value"><?php echo $fetch_message['number']; ?></div>
          </div>
@@ -91,17 +91,17 @@ if(isset($_GET['delete'])){
          <div class="message-text">
             <div class="message-text-label">
                <i class="fas fa-comment-dots"></i>
-               Message
+               Feedback
             </div>
             <div class="message-text-content"><?php echo $fetch_message['message']; ?></div>
          </div>
       </div>
       
-      <div class="message-actions">
+      <!-- <div class="message-actions">
          <a href="admin_contacts.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">
             <i class="fas fa-trash"></i> delete message
          </a>
-      </div>
+      </div> -->
    </div>
    <?php
       };
